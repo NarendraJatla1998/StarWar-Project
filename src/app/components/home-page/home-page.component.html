@@ -1,43 +1,68 @@
-
 <div class="col-12 filters-area gap-5 row m-auto mt-3">
     <div class="col-2 ms-5 background-white p-2">
         <h5 class=" d-flex justify-content-center filter-font-color pt-2">Filters</h5>
- <div class="filter-search">
-<p-multiSelect 
-            [options]="cities" 
-            [(ngModel)]="selectedCities" 
-            optionLabel="name" 
-            placeholder="Select Cities" />
-        
-            <p-multiSelect 
-            [options]="cities" 
-            [(ngModel)]="selectedCities" 
-            optionLabel="name" 
-            placeholder="Select Cities" />
-        
-            <p-multiSelect 
-            [options]="cities" 
-            [(ngModel)]="selectedCities" 
-            optionLabel="name" 
-            placeholder="Select Cities" />
-        
-            <p-multiSelect 
-            [options]="cities" 
-            [(ngModel)]="selectedCities" 
-            optionLabel="name" 
-            placeholder="Select Cities" />
-        
-            <p-multiSelect 
-            [options]="cities" 
-            [(ngModel)]="selectedCities" 
-            optionLabel="name" 
-            placeholder="Select Cities" />   
- </div>
-        
-        
-    
+        <div class="filter-search ps-4">
+            <p-multiSelect [options]="filmsResponse" optionLabel="title" optionValue="title" [(ngModel)]="selectedMovies"
+                placeholder="Movie Names" filter="false"/>
+
+            <p-multiSelect [options]="speciesResponse" [(ngModel)]="selectSpecies" optionLabel="name" optionValue="name"
+                placeholder="Species" filter="false"/>
+
+            <p-multiSelect [options]="vehicleResponse" [(ngModel)]="selectedVehicles" optionLabel="name" optionValue="name"
+                placeholder="Vehicle" filter="false"/>
+
+            <p-multiSelect [options]="starShipsResponse" [(ngModel)]="selectedStarShips" optionLabel="name" optionValue="name"
+                placeholder="Star Ships" filter="false"/>
+
+            <p-multiSelect [options]="peopleDataResponse" [(ngModel)]="selectedBirthYear" optionLabel="birth_year" optionValue="birth_year"
+                placeholder="Birth Year" filter="false"/>
+        </div>
+
+        <div class="d-flex justify-content-center pt-4">
+            <button pButton pRipple label="Search" class="p-button-success" (click)="applyFilters()">
+            </button>
+        </div>
     </div>
-    <div class="col-8 d-flex ms-2 justify-content-center background-white">
-        <h2>oi</h2>
+
+    <div class="col-8 ms-2 background-white">
+        <div class="row pt-2">
+            <span class="filter-font-color">SEARCH RESULTS</span>
+            <p>(By default this table have all the data)</p>
+        </div>
+        <div class="row p-3">
+            <table class="my-table">
+                <thead class="my-table headers">
+                    <tr>
+                        <th>
+                            SI No.
+                        </th>
+                        <th>
+                            Character Name
+                        </th>
+                        <th>
+                            Species
+                        </th>
+                        <th>
+                            Birth Year
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="table-background-color my-table body" *ngFor="let peopleData of filteredPeopleDataResponse; let i = index">
+                    <tr>
+                      <td>{{i+1}}</td>
+                      <td>{{peopleData?.name}}</td>
+                      <td>Species {{peopleData?.species?.length}}</td>
+                      <td>{{peopleData?.birth_year !== 'unknown' ? peopleData?.birth_year : '...'}}</td>
+                    </tr>
+                  </tbody>
+            </table>
+        </div>
+          
+          <div class="pagination d-flex justify-content-end">
+            <button pButton pRipple label="Previous" class="p-button-success" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1"></button>
+            <button pButton pRipple label="Next" class="p-button-success ms-3" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages"></button>
+          </div>
     </div>
 </div>
+
+

@@ -34,10 +34,37 @@ body {
 }
 
 .p-multiselect {
-    margin: 2px;
+    width: 180px;
+    margin: 5px;
     height: 35px;
+    background-color: #e6e6e6;
 }
 
 .p-multiselect .p-multiselect-label {
-    padding: 7px 0.75rem;
+    padding: 5px 0.75rem;
+    font-weight: 700;
+    color: #239972;
+}
+
+.p-multiselect-items-wrapper::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px var(--white-color);
+  background-color: var(--white-color);
+}
+
+.p-multiselect-items-wrapper::-webkit-scrollbar {
+  border: 1px solid var(--white-color);
+  width: 3px;
+  background-color: var(--filter-sidebar-background);
+}
+
+.p-multiselect-items-wrapper::-webkit-scrollbar-thumb {
+  background-color: var(--scroll-thumb-color);
+}
+
+.p-multiselect-items-wrapper .p-multiselect-items {
+    padding: 0px !important;
+}
+
+.p-multiselect-panel .p-multiselect-header {
+    padding: 0.3rem 1rem !important;
 }

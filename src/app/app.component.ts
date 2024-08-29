@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  
   title = 'insuredmine-assignment';
+  onFiltersChanged(filters: any) {
+    // Pass filters to the character list component
+  }
 }

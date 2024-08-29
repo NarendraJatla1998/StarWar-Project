@@ -10,11 +10,9 @@ export class UserService {
     constructor(private apiHandler: ApiHandler, private http: HttpClient){
 
     }
-
-    // private 
  
-    getPeopleData(pageNum: number) {
-        return this.apiHandler.get(`https://swapi.dev/api/people/?page=${pageNum}`)
+    getAPIResponseData(endPoint: string, pageNum: number) {
+        return this.apiHandler.get(`https://swapi.dev/api/${endPoint}/?page=${pageNum}`)
         .pipe(
             map((result)=>{
             if(result) {
@@ -48,4 +46,15 @@ export class UserService {
           })
         );
       }
+  //   private baseUrl = 'https://swapi.dev/api';
+
+  // constructor(private http: HttpClient) {}
+
+  // getPeople(): Observable<any> {
+  //   return this.http.get(`${this.baseUrl}/people`);
+  // }
+
+  // getFilms(): Observable<any> {
+  //   return this.http.get(`${this.baseUrl}/films`);
+  // }
 }
