@@ -1,1 +1,24 @@
-<p>profile-page works!</p>
+<div *ngIf="character">
+    <h1>{{ character.name }}</h1>
+    <p><strong>Species:</strong> {{ speciesName || 'Unknown' }}</p>
+    <p><strong>Movies:</strong></p>
+    <ul>
+      <li *ngFor="let film of films">{{ film }}</li>
+    </ul>
+    <p><strong>Starships:</strong></p>
+    <ul>
+      <li *ngFor="let starship of starships">{{ starship }}</li>
+    </ul>
+  </div>
+
+
+ <div class="col-12 filters-area p-5 mt-3 background-white " >
+    <div *ngIf="character" >
+        <h1>{{ character.name }}</h1>
+    <p><strong>Species:</strong> {{ speciesName || 'Unknown' }}</p>
+    <p><strong>Movies:</strong></p>
+    </div>
+</div>
+
+<div class="col-8 ms-2 background-white">
+</div>

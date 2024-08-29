@@ -8,14 +8,15 @@
             <p-multiSelect [options]="speciesResponse" [(ngModel)]="selectSpecies" optionLabel="name" optionValue="name"
                 placeholder="Species" filter="false"/>
 
-            <p-multiSelect [options]="vehicleResponse" [(ngModel)]="selectedVehicles" optionLabel="name" optionValue="name"
-                placeholder="Vehicle" filter="false"/>
-
-            <p-multiSelect [options]="starShipsResponse" [(ngModel)]="selectedStarShips" optionLabel="name" optionValue="name"
-                placeholder="Star Ships" filter="false"/>
-
-            <p-multiSelect [options]="peopleDataResponse" [(ngModel)]="selectedBirthYear" optionLabel="birth_year" optionValue="birth_year"
-                placeholder="Birth Year" filter="false"/>
+            <div class="mb-3">
+                <label for="startYear">Start Year:</label>
+                <input id="startYear" type="text" [(ngModel)]="selectedStartYear" placeholder="e.g., 30BBY"/>
+                </div>
+        
+                <div class="mb-3">
+                <label for="endYear">End Year:</label>
+                <input id="endYear" type="text" [(ngModel)]="selectedEndYear" placeholder="e.g., 5ABY"/>
+                </div>
         </div>
 
         <div class="d-flex justify-content-center pt-4">
@@ -50,7 +51,7 @@
                 <tbody class="table-background-color my-table body" *ngFor="let peopleData of filteredPeopleDataResponse; let i = index">
                     <tr>
                       <td>{{i+1}}</td>
-                      <td>{{peopleData?.name}}</td>
+                      <td><a class="cursor-pointer" (click)="navigateToDetailsPage(i+1)">{{peopleData.name}}</a></td>
                       <td>Species {{peopleData?.species?.length}}</td>
                       <td>{{peopleData?.birth_year !== 'unknown' ? peopleData?.birth_year : '...'}}</td>
                     </tr>
