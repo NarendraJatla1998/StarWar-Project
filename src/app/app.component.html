@@ -1,0 +1,23 @@
+<header>
+  <div class="col-12 header-section d-flex ">
+      <div class="col-6 my-2 ms-5 justify-content-start">
+          <h2 class="f-700 color-while pt-2">STAR WAR</h2>
+      </div>
+      <div class="col-5 d-flex justify-content-end">
+          <span class="align-content-end color-while f-400">THE SWAPI PROJECT</span>
+      </div>
+  </div>
+  <div class="home-page">
+    <app-home-page></app-home-page>
+  </div>
+</header>
+<router-outlet></router-outlet>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

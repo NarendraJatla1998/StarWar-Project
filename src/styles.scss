@@ -1,0 +1,43 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+
+body {
+    background-color: #e6e6e6;
+}
+
+
+.color-while {
+    color: #ffff;
+}
+
+.f-700 {
+    font-weight: 700;
+}
+
+.f-400 {
+    font-weight: 400;
+}
+
+.header-section {
+    background: #239972;
+}
+
+.background-white {
+    background-color: #ffff;
+}
+
+.filter-font-color {
+    font-weight: 700;
+    color: #239972;
+}
+
+.p-multiselect {
+    margin: 2px;
+    height: 35px;
+}
+
+.p-multiselect .p-multiselect-label {
+    padding: 7px 0.75rem;
+}
