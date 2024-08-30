@@ -22,7 +22,7 @@ export class UserService {
             }
         })).pipe(catchError(this.errorHandler))
     }
-
+    
     private errorHandler(error: any) {
         return of(error.error)
     }

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/users.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+
 @Component({
   selector: 'app-profile-page',
   templateUrl: './profile-page.component.html',
@@ -13,11 +15,17 @@ export class ProfilePageComponent {
   speciesName: string = '';
   starships: any[] = [];
 
-  constructor(private route: ActivatedRoute, private starWarsService: UserService) {}
+  constructor(private route: ActivatedRoute, private starWarsService: UserService, private router: Router, private spinner: NgxSpinnerService) {}
 
   ngOnInit(): void {
+    this.getCharacterList();
+  }
+
+  getCharacterList() {
     const id = this.route.snapshot.paramMap.get('id');
+    this.spinner.show();
     this.starWarsService.getCharacterDetails(`https://swapi.dev/api/people/${id}/`).subscribe((data: any) => {
+      this.spinner.hide();
       this.character = data;
       this.fetchAdditionalDetails();
     });
@@ -41,6 +49,10 @@ export class ProfilePageComponent {
         this.starships.push(starship.name);
       });
     });
+  }
+
+  gotoHomePage() {
+    this.router.navigate(['character']);
   }
 
 }

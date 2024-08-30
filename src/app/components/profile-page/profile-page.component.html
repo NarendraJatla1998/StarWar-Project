@@ -1,24 +1,40 @@
-<div *ngIf="character">
-    <h1>{{ character.name }}</h1>
-    <p><strong>Species:</strong> {{ speciesName || 'Unknown' }}</p>
-    <p><strong>Movies:</strong></p>
-    <ul>
-      <li *ngFor="let film of films">{{ film }}</li>
-    </ul>
-    <p><strong>Starships:</strong></p>
-    <ul>
-      <li *ngFor="let starship of starships">{{ starship }}</li>
-    </ul>
+<div class="col-12 row m-auto gap-5" >
+  <a (click)="gotoHomePage()" class="filter-font-color cursor-pointer">Home page</a>
+  <div class="col-2 filters-area ms-5 background-white ">
+    <div class="d-flex justify-content-center">
+      <img class="browser-image" src="../../../assets/broser-image.jpg" alt="Imag"/>
+    </div>
+    <div *ngIf="character">
+      <p>Name: <span>{{ character.name }}</span></p>
+      <p>SkywalkerBorn: {{ character.birth_year }}</p>
+      <p>Gender: {{ character.gender }}</p>
+      <p>Height: {{ character.height }}</p>
+      <p>Weight: {{ character.mass }}</p>
+      <p>Created at: {{ character.created }}</p>
+      <p>Edited at: {{ character.edited }}</p>
+      <p>Hair Color: {{ character.hair_color }}</p>
+      <p>Eye Color: {{ character.eye_color }}</p>
+      <p>Skin Color: {{ character.skin_color }}</p>
+      <p>Species: Human</p>
+    </div>
   </div>
 
-
- <div class="col-12 filters-area p-5 mt-3 background-white " >
-    <div *ngIf="character" >
-        <h1>{{ character.name }}</h1>
-    <p><strong>Species:</strong> {{ speciesName || 'Unknown' }}</p>
-    <p><strong>Movies:</strong></p>
+  <div class="col-8 ms-5 filters-area background-white">
+    <div>
+      <h4 class="filter-font-color">Movies</h4>
+      <div class="movies-data-section table-background-color">
+        <ul>
+          <li *ngFor="let film of films">{{ film }}</li>
+        </ul>
+      </div>
     </div>
-</div>
-
-<div class="col-8 ms-2 background-white">
+    <div>
+      <h4 class="filter-font-color">Starships</h4>
+      <div class="movies-data-section table-background-color">
+        <ul>
+          <li *ngFor="let starship of starships">{{ starship }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>

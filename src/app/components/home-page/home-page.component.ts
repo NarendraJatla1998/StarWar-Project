@@ -23,7 +23,7 @@ export class HomePageComponent {
 
   public subscriptions: Subscription[] = [];
   
-  totalRecords: number = 82;
+  totalRecords!: number;
   recordsPerPage: number = 10;
   currentPage: number = 1;
   totalPages!: number;
@@ -32,11 +32,11 @@ export class HomePageComponent {
 
   public filteredPeopleDataResponse: any[] = []; // To hold filtered characters
   ngOnInit() {
-    // this.spinner.show();
     this.fetchAllData(1);
-
   }
+
   fetchAllData( pageNum: number): void {
+    this.spinner.show();
     const apiCalls = this.endPoints.map(endpoint => 
       this.userServices.getAPIResponseData(endpoint, pageNum)
     );
@@ -44,7 +44,9 @@ export class HomePageComponent {
     forkJoin(apiCalls).subscribe(
       {
         next: (results) => {
+          this.spinner.hide();
           this.peopleDataResponse = results[0]?.results;
+          this.totalRecords = results[0]?.count;
           this.filteredPeopleDataResponse = [...this.peopleDataResponse];
           this.filmsResponse = results[1]?.results;
           this.speciesResponse = results[2]?.results;
@@ -54,12 +56,6 @@ export class HomePageComponent {
         }
       }
     );
-  }
-
-  formatDateOfBirth(birthYear: any): any {
-    const isBBY = birthYear?.birth_year.endsWith('BBY');
-    const year = parseInt(birthYear?.birth_year.split(' ')[0]);
-    return isBBY ? -year : year;
   }
   
   
@@ -71,13 +67,13 @@ export class HomePageComponent {
     this.currentPage = page;
     this.fetchAllData(page);
   }
+
   applyFilters(): void {
     this.filteredPeopleDataResponse = this.peopleDataResponse.filter(person => 
       this.filterByMovie(person) &&
       this.filterBySpecies(person) &&
       this.filterByBirthYear(person)
     );
-    
   }
 
   filterByMovie(person: any): boolean {
@@ -106,6 +102,7 @@ export class HomePageComponent {
     if (isNaN(startYear) || isNaN(endYear)) return true;
     return personBirthYear >= startYear && personBirthYear <= endYear;
   }
+
   convertBirthYear(birthYear: string): number {
     if (birthYear.includes('BBY')) {
       return -parseInt(birthYear.replace('BBY', '').trim());
